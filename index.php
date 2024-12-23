@@ -34,7 +34,7 @@ foreach ($data->files as $key => $file) {
 // individual
 foreach($rows as $name => $items){
     $links = array_map(function($item) { return $item['url'];}, $items);
-    file_put_contents("$name.txt", implode("\n\n", $links));
+    file_put_contents("links/$name.txt", implode("\n\n", $links));
 }
 
 // group
@@ -49,7 +49,7 @@ foreach ($groups as $group) {
         }
     }
     if (count($groupLinks) > 0){
-        file_put_contents(sprintf("link_group-%s.txt", $group), implode("\n\n", $groupLinks));
+        file_put_contents(sprintf("links/link_group-%s.txt", $group), implode("\n\n", $groupLinks));
     }
 }
 ?>
@@ -78,7 +78,7 @@ foreach ($groups as $group) {
     </tr>
     <?php foreach ($rows as $name => $items): ?>
         <tr>
-            <td><?php echo $name; ?> <a href="/<?php echo $name ?>.txt">Export Links</a></td>
+            <td><?php echo $name; ?> <a href="/links/<?php echo $name ?>.txt">Export Links</a></td>
             <td>
                 <?php foreach ($items as $item): ?>
                     <?php $name = explode("#", $item['url'])[1] ?? null; ?>
